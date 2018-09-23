@@ -89,9 +89,9 @@ function! neomake#fix#entry(action, entry) abort
                 call neomake#log#info(printf('%s: fixed %s => %s (line %d).', maker.name, string(old), string(replacement[0]), start), {'bufnr': a:entry.bufnr})
             endif
 
-            let error = neomake#compat#buf_set_lines(a:entry.bufnr, start, end, replacement)
-            if !empty(error)
-                call neomake#log#error(printf('Fixing entry failed: %s.', error))
+            let err = neomake#compat#buf_set_lines(a:entry.bufnr, start, end, replacement)
+            if !empty(err)
+                call neomake#log#error(printf('Fixing entry failed: %s.', err))
                 return
             endif
 
